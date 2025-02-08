@@ -1,77 +1,153 @@
-# React Shadcn Starter
+MERN Starter
 
-React + Vite + TypeScript template for building apps with shadcn/ui.
+Welcome to my MERN Starter project! 🚀 This is a fully functional boilerplate for building full-stack web applications using the MERN (MongoDB, Express, React, Node.js) stack. It includes authentication with Clerk, state management with React Query, and is fully styled with Tailwind CSS.
 
-## Getting Started
+🌟 Tech Stack
 
-```
-git clone https://github.com/hayyi2/react-shadcn-starter.git new-project
-cd new-project
-npm install
+Frontend (React + Vite)
+
+React – Component-based UI framework
+
+Vite – Fast build tool for React
+
+React Router – Client-side routing
+
+React Query (@tanstack/react-query) – Data fetching and caching
+
+Clerk – Authentication and user management
+
+Tailwind CSS – Utility-first styling framework
+
+Backend (Node.js + Express + MongoDB)
+
+Express.js – Fast, minimal backend framework
+
+MongoDB + Mongoose – NoSQL database with schema modeling
+
+CORS – Cross-origin requests handling
+
+dotenv – Environment variable management
+
+🏗️ Project Structure
+
+mern-starter/
+├── backend/ # Express backend
+│ ├── src/
+│ │ ├── controllers/
+│ │ ├── models/
+│ │ ├── routes/
+│ │ ├── utils/
+│ │ ├── middleware/
+│ │ └── server.ts
+│ ├── .env # Backend environment variables
+│ ├── package.json # Backend dependencies
+│ ├── tsconfig.json # TypeScript config
+│ └── dist/ # Compiled backend code
+│
+├── frontend/ # React frontend
+│ ├── src/
+│ │ ├── components/
+│ │ ├── pages/
+│ │ ├── hooks/
+│ │ ├── App.tsx
+│ │ ├── main.tsx
+│ │ ├── index.css
+│ ├── .env # Frontend environment variables
+│ ├── package.json # Frontend dependencies
+│ ├── tailwind.config.js
+│ ├── vite.config.ts # Vite config
+│ └── dist/ # Build output
+│
+└── README.md
+
+🔧 Setup & Installation
+
+1️⃣ Clone the Repository
+
+git clone https://github.com/YOUR_GITHUB_USERNAME/mern-starter.git
+cd mern-starter
+
+2️⃣ Install Dependencies
+
+cd backend && npm install
+cd ../frontend && npm install
+
+3️⃣ Set Up Environment Variables
+
+Create .env files in both backend/ and frontend/.
+
+Backend (backend/.env):
+
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+CLERK_SECRET_KEY=your_clerk_secret_key
+
+Frontend (frontend/.env):
+
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+VITE_BACKEND_URL=http://localhost:5000
+
+4️⃣ Run the Application
+
+Start the Backend
+
+cd backend
 npm run dev
-```
 
-## Getting Done
+Backend should be running at http://localhost:5000.
 
-- [x] Single page app with navigation and responsif layout
+Start the Frontend
 
-- [x] Customable configuration `/config`
+cd frontend
+npm run dev
 
-- [x] Simple starting page/feature `/pages`
+Frontend should be running at http://localhost:5173.
 
-- [x] Github action deploy github pages
+🚀 Deployment
 
-## Deploy `gh-pages`
-- change `basenameProd` in `/vite.config.ts`
-- create deploy key `GITHUB_TOKEN` in github `/settings/keys`
-- commit and push changes code
-- setup gihub pages to branch `gh-pages`
-- run action `Build & Deploy`
+Deploy Backend to Railway
 
-### Auto Deploy
-- change file `.github/workflows/build-and-deploy.yml`
-- Comment on `workflow_dispatch`
-- Uncomment on `push`
-```yaml
-# on:
-#   workflow_dispatch:
-on:
-  push:
-    branches: ["main"]
-```
+Push backend to GitHub.
 
-## Features
+Deploy on Railway.
 
-- React + Vite + TypeScript
-- Tailwind CSS
-- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
-- [shadcn-ui](https://github.com/shadcn-ui/ui/)
-- [radix-ui/icons](https://www.radix-ui.com/icons)
+Add environment variables in Railway settings.
 
-## Project Structure
+Update VITE_BACKEND_URL in frontend .env with the deployed backend URL.
 
-```
-react-shadcn-starter/
-├── public/            # Public assets
-├── src/               # Application source code
-│   ├── components/    # React components
-│   │   └── ui/        # shadc/ui components
-│   │   └── layouts/   # layouts components
-│   ├── context/       # contexts components
-│   ├── config/        # Config data
-│   ├── hook/          # Custom hooks
-│   ├── lib/           # Utility functions
-│   ├── pages/         # pages/features components
-│   ├── App.tsx        # Application entry point
-│   ├── index.tsx      # Main rendering file
-│   └── Router.tsx     # Routes component
-├── index.html         # HTML entry point
-├── postcss.config.js  # PostCSS configuration
-├── tailwind.config.js # Tailwind CSS configuration
-├── tsconfig.json      # TypeScript configuration
-└── vite.config.ts     # Vite configuration
-```
+Deploy Frontend to Netlify
 
-## License
+Push frontend to GitHub.
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/hayyi2/react-shadcn-starter/blob/main/LICENSE) file for details. 
+Deploy on Netlify.
+
+Add frontend environment variables in Netlify settings.
+
+📌 Features
+
+🔒 Authentication with Clerk (Sign in, Sign up, User Management)
+
+⚡ Optimistic UI updates using React Query
+
+🛠️ TypeScript support in both frontend and backend
+
+🏎️ Vite for blazing fast frontend development
+
+🌍 CORS handling for smooth API communication
+
+🛠️ To-Do & Future Improvements
+
+✅ Add more authentication providers (Google, GitHub, etc.)
+
+✅ Implement role-based access control (RBAC)
+
+✅ Add unit and integration tests
+
+✅ Improve UI with animations
+
+📝 License
+
+This project is licensed under the MIT License.
+
+Feel free to fork, modify, and use this MERN starter in your projects! 🚀
+
