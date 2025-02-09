@@ -8,9 +8,19 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Mount your routes under API endpoints:
+// Auth related stuff
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+
+// Routes
 app.use("/habits", habitRoutes);
 app.use("/users", userRoutes);
+
+// Err handling
 app.use(errorHandler);
 
 export default app; // ES6 default export
