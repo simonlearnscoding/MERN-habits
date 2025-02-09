@@ -1,0 +1,18 @@
+
+###
+
+POST http://localhost:5000/users/sign-up HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Johny",
+  "email": "34",
+  "password": "555-555-5555"
+}
+
+
+### 
+GET http://localhost:5000/users/
+
+###

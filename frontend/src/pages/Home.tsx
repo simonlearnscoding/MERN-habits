@@ -1,9 +1,12 @@
+import { LogoutButton } from "@/components/LogoutButton";
+import useEnsureUserExists from "@/hooks/useEnsureUserExists";
 export default function Home() {
+  useEnsureUserExists();
   try {
-    console.log("seas");
     return (
       <header>
         <div className="text-3xl">seas </div>
+        <LogoutButton />
 
         {/* <SignedOut> */}
         {/*   <SignInButton /> */}

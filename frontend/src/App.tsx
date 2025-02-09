@@ -8,9 +8,9 @@ import ProtectedRoute from "./providers/isAuthenticated";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/login" element={<LoginButton />} />
       <Route path="/logout" element={<LogoutButton />} />
+      <Route path="/home" element={<Home />} />
       <Route element={<ProtectedRoute />}>
         <Route path="/profile" element={<Profile />} />
       </Route>

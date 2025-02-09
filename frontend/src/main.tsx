@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       domain="dev-yq424yyo7e514hs3.us.auth0.com" // e.g., dev-abc123.auth0.com
       clientId="UChpHdAe0furjn3l5q5C4B5FX0oIeJwq" // e.g., Abc123Def456Ghi789
       authorizationParams={{
-        redirect_uri: window.location.origin, // Redirect after login
+        redirect_uri: "http://localhost:5173/home", // Redirect after login
       }}
     >
       <BrowserRouter>

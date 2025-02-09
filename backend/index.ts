@@ -1,8 +1,7 @@
-import app from "./app";
-
-import dbConnect from "./config/db";
-
+import app from "./src/app"; // Import the default export
+import dbConnect from "./src/config/db";
 import dotenv from "dotenv";
+
 console.log(`Node.js version: ${process.version}`);
 dotenv.config();
 dbConnect(); // Connects to MongoDB
