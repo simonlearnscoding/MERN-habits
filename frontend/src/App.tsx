@@ -1,16 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import { Profile } from "./pages/Profile";
-import { LoginButton } from "./components/LoginButton";
-import { LogoutButton } from "./components/LogoutButton";
-import ProtectedRoute from "./providers/isAuthenticated";
+import LoginPage from "./pages/LoginPage";
+import ProtectedRoute from "@/providers/ProtectedRoute"; // ✅ Correct import
 
 function App() {
   return (
     <Routes>
-      <Route path="/login" element={<LoginButton />} />
-      <Route path="/logout" element={<LogoutButton />} />
-      <Route path="/home" element={<Home />} />
+      {/* Public Route */}
+      <Route path="/login" element={<LoginPage />} />
+
+      {/* Protected Routes */}
       <Route element={<ProtectedRoute />}>
         <Route path="/profile" element={<Profile />} />
       </Route>

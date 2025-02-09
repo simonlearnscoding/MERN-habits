@@ -2,6 +2,14 @@ import { NextFunction, Request, Response } from "express";
 import User from "../models/User";
 import { User as IUser } from "./../types/User";
 import { asyncHandler, AppError } from "../errors/errorMiddleware";
+import passport from "./../config/passport";
+
+export const handleLogin = asyncHandler(async () => {
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  });
+});
 
 export const handleGetUsers = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
