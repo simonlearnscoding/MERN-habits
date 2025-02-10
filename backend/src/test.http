@@ -31,5 +31,7 @@ Accept: application/json
   "password": "555-555-5555"
 }
 
+###
+GET http://localhost:5000/self/auth/
 
 ### 

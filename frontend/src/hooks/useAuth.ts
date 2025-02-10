@@ -9,7 +9,10 @@ export const useAuth = () => {
   return useQuery({
     queryKey: ["auth"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/self/auth");
+      const res = await axios.get("http://localhost:5000/self/auth", {
+        withCredentials: true,
+      });
+      console.log("res", res);
       if (res.data.isAuthenticated) {
         setUser(res.data.user);
       } else {
@@ -17,6 +20,7 @@ export const useAuth = () => {
       }
       return data;
     },
-    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
+
+    // staleTime: 1000 * 60 * 5, // Cache for 5 minutes
   });
 };

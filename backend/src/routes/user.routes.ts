@@ -7,9 +7,17 @@ import {
 
 const router = Router();
 
-// This endpoint should be called from the frontend after a successful login.
+// Authentication routes
 router.post("/", handleSignUp);
+router.post("/login", handleLogin);
 router.get("/", handleGetUsers);
 
-router.post("/login", handleLogin);
+// Login success & failure handlers
+// router.post("/login/failure",async  (req: Request, res: Response) => {
+//   return res.status(401).json({ message: "Login failed" });
+// });
+// router.post("/login/success",async  (req: Request, res: Response) => {
+//   return res.status(200).json({ message: "Login successful" });
+// }
+
 export default router;

@@ -1,21 +1,26 @@
 import { NextFunction, Request, Response } from "express";
 import User from "../models/User";
-import { User as IUser } from "./../types/User";
+import { User as IUser } from "../types/User";
 import { asyncHandler, AppError } from "../errors/errorMiddleware";
-import passport from "./../config/passport";
+import passport from "../config/passport";
 
-export const handleLogin = asyncHandler(async () => {
-  passport.authenticate("local", {
-    successRedirect: "/",
-    failureRedirect: "/login",
-  });
+//@ts-ignore
+export const handleLogin = asyncHandler(async (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) return next(err);
+    if (!user) return res.status(401).json({ message: "Invalid credentials" });
+
+    //@ts-ignore
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      return res.json({ isAuthenticated: true, user });
+    });
+  })(req, res, next);
 });
 
 export const handleGetUsers = asyncHandler(
-  async (req: Request, res: Response, next: NextFunction) => {
-    // Fetch all users, excluding sensitive fields (e.g., password)
+  async (req: Request, res: Response) => {
     const users: IUser[] = await User.find().select("-password");
-
     res.status(200).json({
       success: true,
       count: users.length,
@@ -26,22 +31,19 @@ export const handleGetUsers = asyncHandler(
 
 export const handleSignUp = asyncHandler(
   async (req: Request, res: Response) => {
-    console.log("hitting sign up route");
     const { email, name, password } = req.body;
 
-    console.log("req.body", req.body);
+    console.log("post body:", req.body);
     if (!email || !name || !password) {
-      console.log("req.body");
-      throw new AppError(`Email and name are required ${req.body}`, 400);
+      throw new AppError("Email, name, and password are required", 400);
     }
 
-    // Check if user already exists
     let existingUser: IUser | null = await User.findOne({ email });
     if (existingUser) {
+      console.log("User already exists");
+      res.status(409).json({ message: "User already exists" });
       throw new AppError("User already exists", 409);
     }
-
-    // Create new user
 
     const user: IUser = await User.create({ email, name, password });
 

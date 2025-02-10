@@ -1,4 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Loader2 } from "lucide-react";
@@ -16,7 +19,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
-import { error } from "console";
 
 // Define the schema
 const loginSchema = z.object({
@@ -29,7 +31,12 @@ const loginSchema = z.object({
     .min(6, { message: "Password must be at least 6 characters long" }),
 });
 
-export default function LoginForm() {
+type props = {
+  setForm: (form: "login" | "register") => void;
+};
+export default function LoginForm({ setForm }: props) {
+  const [error, serError] = useState<string | null>(null);
+  const navigate = useNavigate();
   const { toast } = useToast();
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -48,7 +55,9 @@ export default function LoginForm() {
         title: "Created Account",
         description: "Account created successfully",
       });
+      navigate("/dashboard");
     },
+
     // TODO: typesafety here
     onError: (error: any) => {
       toast({
@@ -56,6 +65,7 @@ export default function LoginForm() {
         title: "Error",
         description: error.message,
       });
+      serError(error.response.data.message);
     },
   });
   const onSubmit = (data: any) => {
@@ -115,6 +125,10 @@ export default function LoginForm() {
             </FormItem>
           )}
         />
+
+        {error ? (
+          <div className=" text-red-600 p-1 rounded-md">{error}</div>
+        ) : null}
 
         {/* Submit Button */}
         <Button type="submit" className="w-full">
