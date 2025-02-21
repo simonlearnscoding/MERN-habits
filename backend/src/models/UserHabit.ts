@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const { Schema } = mongoose;
-const UserHabit = require("../../../types/UserHabit"); // Importing UserHabit type
+import {UserHabit} from "./../types/UserHabit.js"; // Importing UserHabit type
 
 const UserHabitSchema = new Schema({
   User: { type: Schema.Types.ObjectId, ref: "User" },

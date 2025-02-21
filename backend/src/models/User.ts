@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { User } from "./../types/User";
+import { User } from "./../types/User.js";
 
 const UserSchema: Schema = new Schema({
   password: { type: String, required: true },

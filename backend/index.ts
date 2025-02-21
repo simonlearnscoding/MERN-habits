@@ -1,5 +1,13 @@
-import app from "./src/app"; // Import the default export
-import dbConnect from "./src/config/db";
+// Global error handlers
+process.on("uncaughtException", (err) => {
+  console.error("Uncaught Exception:", err);
+});
+process.on("unhandledRejection", (reason, promise) => {
+  console.error("Unhandled Rejection at:", promise, "reason:", reason);
+});
+
+import app from "./src/app.js"; // Import the default export
+import dbConnect from "./src/config/db.js";
 import dotenv from "dotenv";
 
 console.log(`Node.js version: ${process.version}`);

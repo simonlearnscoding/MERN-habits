@@ -1,32 +1,39 @@
 import express from "express";
 import cors from "cors";
-import habitRoutes from "./routes/habit.routes";
-import userRoutes from "./routes/user.routes";
-import selfRoutes from "./routes/self.routes";
-import { errorHandler } from "./errors/errorMiddleware";
+import MongoStore from "connect-mongo";
+import habitRoutes from "./routes/habit.routes.js";
+import userRoutes from "./routes/user.routes.js";
+import selfRoutes from "./routes/self.routes.js";
+import { errorHandler } from "./errors/errorMiddleware.js";
 import session from "express-session";
-import passport from "./config/passport";
+import { configurePassport } from "./config/passport.js";
+import passport from "passport";
 const app = express();
+import dotenv from "dotenv";
 
-// Middleware
+configurePassport();
+dotenv.config();
 app.use(express.json());
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "*",
   credentials: true,
 };
 app.use(cors(corsOptions));
 
-// Auth related stuff
+// ── Session configuration ───────────────────────────────────────────
 app.use(
   session({
     secret: "cats",
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
-    },
     resave: false,
-    secure: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URI,
+    }),
+    cookie: {
+      secure: false, // Set to true if using HTTPS
+      maxAge: 1000 * 60 * 60 * 24, // 1 day
+    },
   }),
 );
 

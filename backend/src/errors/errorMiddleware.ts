@@ -12,17 +12,23 @@ export class AppError extends Error {
 
 // Centralized error handler middleware
 export const errorHandler = (
-  err: AppError,
+  err: any, // Accept any error
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  const statusCode = err.statusCode || 500;
-  const message = err.message || "Internal Server Error";
+  // If the error isn't an instance of AppError, wrap it in one
+  const error =
+    err instanceof AppError
+      ? err
+      : new AppError(
+          err.message || "Internal Server Error",
+          err.statusCode || 500,
+        );
 
-  res.status(statusCode).json({
+  res.status(error.statusCode).json({
     success: false,
-    message,
+    message: error.message,
   });
 };
 

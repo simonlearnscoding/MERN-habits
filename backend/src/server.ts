@@ -1,5 +1,5 @@
-import app from "./app";
-import dbConnect from "./config/db";
+import app from "./app.js";
+import dbConnect from "./config/db.js";
 import dotenv from "dotenv";
 
 console.log(`Node.js version: ${process.version}`);

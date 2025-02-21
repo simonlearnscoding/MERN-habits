@@ -2,7 +2,8 @@
   "compilerOptions": {
     "lib": ["es2023"], // Use "es2023" for Node.js 20
     "allowJs": true,
-    "module": "ES2020",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "skipLibCheck": true,
     "noUnusedParameters": false,
     "noUnusedLocals": false,
@@ -10,7 +11,6 @@
     "noImplicitAny": false,
     "noEmit": false,
     "esModuleInterop": true,
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
